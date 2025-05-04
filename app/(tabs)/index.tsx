@@ -37,7 +37,7 @@ function HomeScreenContent() {
     handleLike,
     handleSkip
   );
-
+ 
   const resetCardPosition = () => {
     translateX.value = withSpring(0);
     rotate.value = withSpring(0);
@@ -52,14 +52,16 @@ function HomeScreenContent() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Clothing Swipe</Text>
-      <CardDeck
-        data={items}
-        currentIndex={currentIndex}
-        gestureHandler={gestureHandler}
-        cardStyle={cardStyle}
-        likeStyle={likeStyle}
-        skipStyle={skipStyle}
-      />
+      <View style={styles.cardContainer}>
+        <CardDeck
+          data={items}
+          currentIndex={currentIndex}
+          gestureHandler={gestureHandler}
+          cardStyle={cardStyle}
+          likeStyle={likeStyle}
+          skipStyle={skipStyle}
+        />
+      </View>
     </View>
   );
 }
@@ -79,11 +81,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#FFFFFF",
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  cardContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    paddingBottom: 150,
   }
 });

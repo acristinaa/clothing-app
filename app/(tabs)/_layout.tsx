@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Colors } from '@/constants/Colors';
@@ -16,14 +16,20 @@ export default function TabLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+          tabBarActiveTintColor: Colors.light.white,
           headerShown: true,
+          headerStyle: {
+            backgroundColor: Colors.light.darkPurple,
+          },
+          headerTintColor: 'white',
           tabBarStyle: Platform.select({
             ios: {
-              // Use a transparent background on iOS to show the blur effect
               position: 'absolute',
+              backgroundColor: Colors.light.darkPurple,
             },
-            default: {},
+            default: {
+              backgroundColor: Colors.light.darkPurple,
+            },
           }),
         }}>
         <Tabs.Screen
@@ -31,18 +37,25 @@ export default function TabLayout() {
           options={{
             title: 'Home',
             headerTitle: 'Clothing Swipe',
-            tabBarIcon: ({ color }) => <Octicons name="home" size={24} color="black" />,
+            tabBarIcon: ({ color }) => <Octicons name="home" size={24} color="white" />,
           }}
         />
         <Tabs.Screen
           name="settings"
           options={{
-            title: 'Settings',
-            headerTitle: 'Settings',
-            tabBarIcon: ({ color }) => <Feather name="settings" size={24} color="black" />,
+            title: 'Explore',
+            headerTitle: 'Explore Outfits',
+            tabBarIcon: ({ color }) => <Feather name="settings" size={24} color="white" />,
           }}
         />
       </Tabs>
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: Colors.light.darkPurple,
+  },
+});
+

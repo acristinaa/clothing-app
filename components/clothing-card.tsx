@@ -1,4 +1,4 @@
-// components/ClothingCard.tsx
+import React, { forwardRef } from 'react';
 import { Image, Text, View, StyleSheet, Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 
@@ -13,21 +13,21 @@ type CardProps = {
   cardStyle?: any;
   likeStyle?: any;
   skipStyle?: any;
-  isActive?: boolean;
+  isActive?: boolean; 
   zIndex?: number;
 }
 
-export default function ClothingCard({ 
+const ClothingCard = forwardRef<View, CardProps>(({ 
   item, 
   cardStyle, 
   likeStyle, 
   skipStyle, 
   isActive = false,
   zIndex
-}: CardProps) {
+}, ref) => {
   if (isActive) {
     return (
-      <Animated.View style={[styles.card, cardStyle]}>
+      <Animated.View ref={ref} style={[styles.card, cardStyle]}>
         <Image source={{ uri: item.image }} style={styles.cardImage} />
         <Animated.View style={[styles.likeOverlay, likeStyle]}>
           <Text style={styles.likeText}>LIKE</Text>
@@ -48,7 +48,9 @@ export default function ClothingCard({
       <Image source={{ uri: item.image }} style={styles.cardImage} />
     </View>
   );
-}
+});
+
+export default ClothingCard;
 
 const styles = StyleSheet.create({
   card: {
@@ -56,13 +58,14 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH * 0.9,
     height: SCREEN_WIDTH * 1.3,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: "#e2d5f1",
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
     overflow: 'hidden',
+    left: SCREEN_WIDTH * -0.00,
   },
   nextCard: {
     top: 10,
