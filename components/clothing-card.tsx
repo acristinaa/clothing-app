@@ -30,10 +30,10 @@ const ClothingCard = forwardRef<View, CardProps>(({
       <Animated.View ref={ref} style={[styles.card, cardStyle]}>
         <Image source={{ uri: item.image }} style={styles.cardImage} />
         <Animated.View style={[styles.likeOverlay, likeStyle]}>
-          <Text style={styles.likeText}>LIKE</Text>
+          <Text style={styles.likeText}>love</Text>
         </Animated.View>
         <Animated.View style={[styles.skipOverlay, skipStyle]}>
-          <Text style={styles.skipText}>SKIP</Text>
+          <Text style={styles.skipText}>nah</Text>
         </Animated.View>
         <View style={styles.cardContent}>
           <Text style={styles.cardTitle}>{item.name}</Text>

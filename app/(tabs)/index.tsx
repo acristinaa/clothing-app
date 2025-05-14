@@ -1,99 +1,133 @@
-import 'react-native-gesture-handler';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { DataProvider, useData } from '../../components/data-context';
-import CardDeck from '../../components/card-deck';
-import EmptyState from '../../components/empty-state';
-import useSwipeHandler from '../../components/swipe-handler';
-
-function HomeScreenContent() {
-  const { items, likedItems, skippedItems, currentIndex, handleLike, handleSkip } = useData();
-  const translateX = useSharedValue(0);
-  const rotate = useSharedValue(0);
-  const likeOpacity = useSharedValue(0);
-  const skipOpacity = useSharedValue(0);
-
-  const cardStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translateX.value },
-      { rotate: `${rotate.value}deg` }
-    ]
-  }));
-
-  const likeStyle = useAnimatedStyle(() => ({
-    opacity: likeOpacity.value,
-  }));
-
-  const skipStyle = useAnimatedStyle(() => ({
-    opacity: skipOpacity.value,
-  }));
-
-  const gestureHandler = useSwipeHandler(
-    translateX,
-    rotate,
-    likeOpacity,
-    skipOpacity,
-    handleLike,
-    handleSkip
-  );
- 
-  const resetCardPosition = () => {
-    translateX.value = withSpring(0);
-    rotate.value = withSpring(0);
-    likeOpacity.value = withSpring(0);
-    skipOpacity.value = withSpring(0);
-  };
-
-  if (currentIndex >= items.length) {
-    return <EmptyState likedCount={likedItems.length} skippedCount={skippedItems.length} />;
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Clothing Swipe</Text>
-      <View style={styles.cardContainer}>
-        <CardDeck
-          data={items}
-          currentIndex={currentIndex}
-          gestureHandler={gestureHandler}
-          cardStyle={cardStyle}
-          likeStyle={likeStyle}
-          skipStyle={skipStyle}
-        />
-      </View>
-    </View>
-  );
-}
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function HomeScreen() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <DataProvider>
-        <HomeScreenContent />
-      </DataProvider>
-    </GestureHandlerRootView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Image
+          source={{ uri: 'https://picsum.photos/200' }}
+          style={styles.profileImage}
+        />
+        <Text style={styles.name}>Jane Doe</Text>
+        <Text style={styles.bio}>Fashion enthusiast | Coffee lover | Travel addict</Text>
+      </View>
+
+      <View style={styles.statsContainer}>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>245</Text>
+          <Text style={styles.statLabel}>Likes</Text>
+        </View>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>1.2k</Text>
+          <Text style={styles.statLabel}>Followers</Text>
+        </View>
+        <View style={styles.statItem}>
+          <Text style={styles.statNumber}>890</Text>
+          <Text style={styles.statLabel}>Following</Text>
+        </View>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>About Me</Text>
+        <Text style={styles.sectionText}>
+          Passionate about sustainable fashion and finding the perfect outfit for every occasion. 
+          Always on the lookout for unique pieces that tell a story.
+        </Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Style Preferences</Text>
+        <View style={styles.preferencesContainer}>
+          <View style={styles.preferenceItem}>
+            <Ionicons name="shirt-outline" size={24} color="#333" />
+            <Text style={styles.preferenceText}>Casual</Text>
+          </View>
+          <View style={styles.preferenceItem}>
+            <Ionicons name="diamond-outline" size={24} color="#333" />
+            <Text style={styles.preferenceText}>Elegant</Text>
+          </View>
+          <View style={styles.preferenceItem}>
+            <Ionicons name="leaf-outline" size={24} color="#333" />
+            <Text style={styles.preferenceText}>Sustainable</Text>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    paddingTop: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
   },
-  title: {
+  header: {
+    alignItems: 'center',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 15,
+  },
+  name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 5,
   },
-  cardContainer: {
-    flex: 1,
-    width: '100%',
+  bio: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+  },
+  statItem: {
     alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    paddingBottom: 150,
-  }
+  },
+  statNumber: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  statLabel: {
+    fontSize: 14,
+    color: '#666',
+  },
+  section: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  sectionText: {
+    fontSize: 16,
+    color: '#444',
+    lineHeight: 24,
+  },
+  preferencesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+  },
+  preferenceItem: {
+    alignItems: 'center',
+  },
+  preferenceText: {
+    marginTop: 5,
+    fontSize: 14,
+    color: '#666',
+  },
 });
