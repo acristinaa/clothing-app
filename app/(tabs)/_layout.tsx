@@ -57,6 +57,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <Entypo name="chat" size={24} color="white" />,
           }}
         />
+        
       </Tabs>
     </GestureHandlerRootView>
   );
