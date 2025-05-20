@@ -32,7 +32,7 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack screenOptions={{
         headerStyle: {
-          backgroundColor: Colors.light.darkGreen,
+          backgroundColor: Colors.light.mainGreen,
         },
         headerTintColor: 'white',
       }}>
@@ -40,8 +40,14 @@ export default function RootLayout() {
         <Stack.Screen name="my-closet-page" options={{ 
           headerShown: true, 
           headerTitle: 'My Closet',
-          headerLeft: () => null,  // This hides the back button
-          headerBackVisible: false, // Additional property to ensure back button is hidden
+          headerLeft: () => null, 
+          headerBackVisible: false, 
+        }} />
+        <Stack.Screen name="upload-page" options={{ 
+          headerShown: true, 
+          headerTitle: 'Upload',
+          headerLeft: () => null, 
+          headerBackVisible: false, 
         }} />
         <Stack.Screen name="+not-found" />
       </Stack>

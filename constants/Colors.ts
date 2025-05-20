@@ -15,7 +15,19 @@ export const Colors = {
     dubaiChocolate: "#C2D168",
     yellowFaryd: "#FEDC78",
     strawberryMilk: "#FFCACA",
-    darkGreen: "#8A9A5B",
+    //Color palette
+    mainGreen: "#C2D168",
+    darkGreen: "#517238",
+    lightGreen: "#DDF4B4",
+    //Pinks
+    mainPink: "#FF80AA",
+    darkPink: "#8B003E",
+    lightPink: "#FFBADB",
+    //Yellos
+    mainYellow: "#FEDC78",
+    darkYellow: "#C88708",
+    lightYellow: "#FDEFC6",
+
   },
   dark: {
     text: "#ECEDEE",
@@ -30,6 +42,19 @@ export const Colors = {
     dubaiChocolate: "#C2D168",
     yellowFaryd: "#FEDC78",
     strawberryMilk: "#FFCACA",
-    darkGreen: "#15693c",
+    //Color palette
+    //Greens
+    mainGreen: "#C2D168",
+    darkGreen: "#517238",
+    lightGreen: "#DDF4B4",
+    //Pinks
+    mainPink: "#FF80AA",
+    darkPink: "#8B003E",
+    lightPink: "#FFBADB",
+    //Yellos
+    mainYellow: "#FEDC78",
+    darkYellow: "#C88708",
+    lightYellow: "#FDEFC6",
+
   },
 };

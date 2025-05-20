@@ -38,7 +38,7 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <View style={styles.sectionContent}>
           <Text style={styles.sectionTitle}>Upload clothes</Text>
-          <TouchableOpacity style={styles.clothesContainer} onPress={() => {}}>
+          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push('/upload-page')}>
             <AntDesign name="upload" size={90} color="black" />
           </TouchableOpacity>
         </View>

@@ -16,20 +16,20 @@ export default function TabLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors.light.white,
-          tabBarInactiveTintColor: Colors.light.white,
+          tabBarActiveTintColor: Colors.light.darkGreen,
+          tabBarInactiveTintColor: Colors.light.lightGreen,
           headerShown: true,
           headerStyle: {
-            backgroundColor: Colors.light.darkGreen,
+            backgroundColor: Colors.light.mainGreen,
           },  
           headerTintColor: 'white',
           tabBarStyle: Platform.select({
             ios: {
               position: 'absolute',
-              backgroundColor: Colors.light.darkGreen,
+              backgroundColor: Colors.light.mainGreen,
             },
             default: {
-              backgroundColor: Colors.light.darkGreen,
+              backgroundColor: Colors.light.mainGreen,
             },
           }),
         }}>
@@ -38,7 +38,7 @@ export default function TabLayout() {
           options={{
             title: 'Profile',
             headerTitle: 'mavazi',
-            tabBarIcon: ({ color }) => <FontAwesome name="user-circle-o" size={24} color="white" />,
+            tabBarIcon: ({ focused }) => <FontAwesome name="user-circle-o" size={24} color={focused ? Colors.light.darkGreen : Colors.light.lightGreen} />,
           }}
         />
         <Tabs.Screen 
@@ -46,7 +46,7 @@ export default function TabLayout() {
         options={{
           title: 'Swipe',
           headerTitle: 'swipe',
-          tabBarIcon: ({ color }) => <Entypo name="cycle" size={24} color="white" />,
+          tabBarIcon: ({ focused }) => <Entypo name="cycle" size={24} color={focused ? Colors.light.darkGreen : Colors.light.lightGreen} />,
         }}
         />
         <Tabs.Screen
@@ -54,7 +54,7 @@ export default function TabLayout() {
           options={{
             title: 'Chats',
             headerTitle: 'chats',
-            tabBarIcon: ({ color }) => <Entypo name="chat" size={24} color="white" />,
+            tabBarIcon: ({ focused }) => <Entypo name="chat" size={24} color={focused ? Colors.light.darkGreen : Colors.light.lightGreen} />,
           }}
         />
       </Tabs>
