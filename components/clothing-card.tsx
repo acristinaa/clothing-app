@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react';
-import { Image, Text, View, StyleSheet, Dimensions } from 'react-native';
-import Animated from 'react-native-reanimated';
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
+import React, { forwardRef } from "react";
+import { Image, Text, View, StyleSheet, Dimensions } from "react-native";
+import Animated from "react-native-reanimated";
+import { Colors } from "../constants/Colors";
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 type CardProps = {
   item: {
@@ -54,17 +54,17 @@ export default ClothingCard;
 
 const styles = StyleSheet.create({
   card: {
-    position: 'absolute',
+    position: "absolute",
     width: SCREEN_WIDTH * 0.9,
     height: SCREEN_WIDTH * 1.3,
     borderRadius: 20,
-    backgroundColor: "#e2d5f1",
-    shadowColor: '#000',
+    backgroundColor: Colors.light.strawberryMilk,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    overflow: 'hidden',
+    overflow: "hidden",
     left: SCREEN_WIDTH * -0.00,
   },
   nextCard: {
@@ -72,50 +72,50 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   cardImage: {
-    width: '100%',
-    height: '80%',
-    resizeMode: 'cover',
+    width: "100%",
+    height: "80%",
+    resizeMode: "cover",
   },
   cardContent: {
     padding: 15,
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   swipeHint: {
     fontSize: 14,
-    color: '#888',
+    color: "#888",
     marginTop: 5,
   },
   likeOverlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 50,
     right: 40,
-    transform: [{ rotate: '20deg' }],
+    transform: [{ rotate: "20deg" }],
     borderWidth: 4,
-    borderColor: '#4CAF50',
+    borderColor: Colors.light.lightGreen,
     borderRadius: 10,
     padding: 10,
   },
   likeText: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#4CAF50',
+    fontWeight: "bold",
+    color: Colors.light.lightGreen,
   },
   skipOverlay: {
-    position: 'absolute',
+    position: "absolute",
     top: 50,
     left: 40,
-    transform: [{ rotate: '-20deg' }],
+    transform: [{ rotate: "-20deg" }],
     borderWidth: 4,
-    borderColor: '#FF5252',
+    borderColor: Colors.light.darkPink,
     borderRadius: 10,
     padding: 10,
   },
   skipText: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FF5252',
+    fontWeight: "bold",
+    color: Colors.light.darkPink,
   }
 });

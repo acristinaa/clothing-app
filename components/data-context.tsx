@@ -17,6 +17,7 @@ type DataContextType = {
   currentIndex: number;
   handleLike: () => void;
   handleSkip: () => void;
+  resetSwipes: () => void;
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -42,6 +43,12 @@ export function DataProvider({ children }: { children: ReactNode }) {
     setCurrentIndex(prev => prev + 1);
   };
 
+  const resetSwipes = () => {
+    setCurrentIndex(0);
+    setLikedItems([]);
+    setSkippedItems([]);
+  };
+
   return (
     <DataContext.Provider value={{
       items: DUMMY_DATA,
@@ -49,7 +56,8 @@ export function DataProvider({ children }: { children: ReactNode }) {
       skippedItems,
       currentIndex,
       handleLike,
-      handleSkip
+      handleSkip,
+      resetSwipes
     }}>
       {children}
     </DataContext.Provider>

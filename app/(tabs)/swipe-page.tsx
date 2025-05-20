@@ -1,18 +1,20 @@
 import 'react-native-gesture-handler';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, RefreshControl } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { DataProvider, useData } from '../../components/data-context';
 import CardDeck from '../../components/card-deck';
 import EmptyState from '../../components/empty-state';
 import useSwipeHandler from '../../components/swipe-handler';
+import { useState, useCallback } from 'react';
 
 function SwipePageContent() {
-  const { items, likedItems, skippedItems, currentIndex, handleLike, handleSkip } = useData();
+  const { items, likedItems, skippedItems, currentIndex, handleLike, handleSkip, resetSwipes } = useData();
   const translateX = useSharedValue(0);
   const rotate = useSharedValue(0);
   const likeOpacity = useSharedValue(0);
   const skipOpacity = useSharedValue(0);
+  const [refreshing, setRefreshing] = useState(false);
 
   const cardStyle = useAnimatedStyle(() => ({
     transform: [
@@ -45,13 +47,18 @@ function SwipePageContent() {
     skipOpacity.value = withSpring(0);
   };
 
-  if (currentIndex >= items.length) {
-    return <EmptyState likedCount={likedItems.length} skippedCount={skippedItems.length} />;
-  }
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    resetSwipes();
+    resetCardPosition();
+    setRefreshing(false);
+  }, [resetSwipes]);
 
-  return (
+  const content = currentIndex >= items.length ? (
+    <EmptyState likedCount={likedItems.length} skippedCount={skippedItems.length} />
+  ) : (
     <View style={styles.container}>
-      <Text style={styles.title}>insert name lol</Text>
+      <Text style={styles.title}>time to swipe!</Text>
       <View style={styles.cardContainer}>
         <CardDeck
           data={items}
@@ -63,6 +70,17 @@ function SwipePageContent() {
         />
       </View>
     </View>
+  );
+
+  return (
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      {content}
+    </ScrollView>
   );
 }
 
@@ -77,6 +95,9 @@ export default function SwipePage() {
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
