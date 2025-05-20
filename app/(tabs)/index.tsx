@@ -8,7 +8,7 @@ export default function HomeScreen() {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={{ uri: 'https://picsum.photos/200' }}
+          source={require('@/assets/images/blion.png')}
           style={styles.profileImage}
         />
         <Text style={styles.name}>@blionmorina</Text>
