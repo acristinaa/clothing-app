@@ -1,5 +1,7 @@
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Colors } from '@/constants/Colors';
+import { router } from 'expo-router';
 
 export default function HomeScreen() {
   return (
@@ -9,48 +11,36 @@ export default function HomeScreen() {
           source={{ uri: 'https://picsum.photos/200' }}
           style={styles.profileImage}
         />
-        <Text style={styles.name}>Jane Doe</Text>
-        <Text style={styles.bio}>Fashion enthusiast | Coffee lover | Travel addict</Text>
+        <Text style={styles.name}>@blionmorina</Text>
+        <Text style={styles.bio}>Design student | Coffee lover | J Balvin lover</Text>
       </View>
 
       <View style={styles.statsContainer}>
         <View style={styles.statItem}>
-          <Text style={styles.statNumber}>245</Text>
-          <Text style={styles.statLabel}>Likes</Text>
+          <Text style={styles.statNumber}>10</Text>
+          <Text style={styles.statLabel}>My clothes</Text>
         </View>
         <View style={styles.statItem}>
-          <Text style={styles.statNumber}>1.2k</Text>
-          <Text style={styles.statLabel}>Followers</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Text style={styles.statNumber}>890</Text>
-          <Text style={styles.statLabel}>Following</Text>
+          <Text style={styles.statNumber}>10</Text>
+          <Text style={styles.statLabel}>Swaps</Text>
         </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>About Me</Text>
-        <Text style={styles.sectionText}>
-          Passionate about sustainable fashion and finding the perfect outfit for every occasion. 
-          Always on the lookout for unique pieces that tell a story.
-        </Text>
+        <View style={styles.sectionContent}>
+          <Text style={styles.sectionTitle}>My Clothes</Text>
+          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push('/my-closet-page')}>
+            <MaterialCommunityIcons name="wardrobe-outline" size={100} color="black" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Style Preferences</Text>
-        <View style={styles.preferencesContainer}>
-          <View style={styles.preferenceItem}>
-            <Ionicons name="shirt-outline" size={24} color="#333" />
-            <Text style={styles.preferenceText}>Casual</Text>
-          </View>
-          <View style={styles.preferenceItem}>
-            <Ionicons name="diamond-outline" size={24} color="#333" />
-            <Text style={styles.preferenceText}>Elegant</Text>
-          </View>
-          <View style={styles.preferenceItem}>
-            <Ionicons name="leaf-outline" size={24} color="#333" />
-            <Text style={styles.preferenceText}>Sustainable</Text>
-          </View>
+        <View style={styles.sectionContent}>
+          <Text style={styles.sectionTitle}>Upload clothes</Text>
+          <TouchableOpacity style={styles.clothesContainer} onPress={() => {}}>
+            <AntDesign name="upload" size={90} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -60,13 +50,13 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: "#f0f0f0",
   },
   profileImage: {
     width: 120,
@@ -76,58 +66,55 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   bio: {
     fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
+    color: "#666",
+    textAlign: "center",
   },
   statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: "#f0f0f0",
   },
   statItem: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   statNumber: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   statLabel: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
   },
   section: {
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    borderBottomColor: "#f0f0f0",
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
-  sectionText: {
-    fontSize: 16,
-    color: '#444',
-    lineHeight: 24,
+  sectionContent: {
+    alignItems: "center",
+    justifyContent: "center",
   },
-  preferencesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 10,
-  },
-  preferenceItem: {
-    alignItems: 'center',
-  },
-  preferenceText: {
-    marginTop: 5,
-    fontSize: 14,
-    color: '#666',
+  clothesContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: Colors.light.dubaiChocolate,
+    backgroundColor: Colors.light.dubaiChocolate,
   },
 });
