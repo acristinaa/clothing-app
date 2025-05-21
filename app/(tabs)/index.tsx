@@ -1,14 +1,14 @@
-import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors } from '@/constants/Colors';
-import { router } from 'expo-router';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('@/assets/images/blion.png')}
+          source={require("@/assets/images/blion.png")}
           style={styles.profileImage}
         />
         <Text style={styles.name}>@blionmorina</Text>
@@ -29,7 +29,7 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <View style={styles.sectionContent}>
           <Text style={styles.sectionTitle}>My Clothes</Text>
-          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push('/my-closet-page')}>
+          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push("/my-closet-page")}>
             <MaterialCommunityIcons name="wardrobe-outline" size={100} color="black" />
           </TouchableOpacity>
         </View>
@@ -38,7 +38,7 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <View style={styles.sectionContent}>
           <Text style={styles.sectionTitle}>Upload clothes</Text>
-          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push('/upload-page')}>
+          <TouchableOpacity style={styles.clothesContainer} onPress={() => router.push("/upload-page")}>
             <AntDesign name="upload" size={90} color="black" />
           </TouchableOpacity>
         </View>

@@ -1,12 +1,12 @@
-import 'react-native-gesture-handler';
-import { StyleSheet, View, Text, ScrollView, RefreshControl } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { DataProvider, useData } from '../../components/data-context';
-import CardDeck from '../../components/card-deck';
-import EmptyState from '../../components/empty-state';
-import useSwipeHandler from '../../components/swipe-handler';
-import { useState, useCallback } from 'react';
+import "react-native-gesture-handler";
+import { StyleSheet, View, Text, ScrollView, RefreshControl } from "react-native";
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { DataProvider, useData } from "../../components/data-context";
+import CardDeck from "../../components/card-deck";
+import EmptyState from "../../components/empty-state";
+import useSwipeHandler from "../../components/swipe-handler";
+import { useState, useCallback } from "react";
 
 function SwipePageContent() {
   const { items, likedItems, skippedItems, currentIndex, handleLike, handleSkip, resetSwipes } = useData();
@@ -100,21 +100,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     paddingTop: 20,
     backgroundColor: "#FFFFFF",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   cardContainer: {
     flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
     paddingBottom: 150,
   }
 });
